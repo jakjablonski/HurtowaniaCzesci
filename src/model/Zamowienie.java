@@ -1,4 +1,4 @@
-package Object;
+package model;
 import java.sql.Date;
 
 public class Zamowienie {
