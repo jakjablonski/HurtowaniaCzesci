@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 import model.Czesc;
 
 public class CzescManager {
@@ -48,4 +49,46 @@ public class CzescManager {
 		return conn;
 	}
 	
+	public int DodajCzesc(Czesc czesc){
+	int licznik = 0;
+		try {
+			conn.setAutoCommit(false);
+			DodajCzesc.setString(1, czesc.getNazwa());
+			DodajCzesc.setDouble(2, czesc.getCena());
+			DodajCzesc.setString(3, czesc.getMarka());
+			licznik = DodajCzesc.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return licznik;
 	}
+	
+	public int UsunCzesc(Czesc czesc){
+	int licznik = 0;
+		try {
+			conn.setAutoCommit(false);
+			UsunCzesc.setInt(1, czesc.getIdCzesc());
+			licznik = UsunCzesc.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return licznik;
+	}
+	
+	public int UsunWszystkieCzesc(Czesc czesc){
+	int licznik = 0;
+		try {
+			conn.setAutoCommit(false);
+			licznik = UsunWszystkieCzesc.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return licznik;
+	}
+	
+	//dodaj jakas liste tu
+	
+}	
