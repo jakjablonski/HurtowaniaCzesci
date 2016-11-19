@@ -53,6 +53,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 /hsqldb-2.3.4/
+/hsqldb/
 # Windows Installer files
 *.cab
 *.msi
