@@ -1,7 +1,8 @@
 package model;
 public class Czesc {
 	
-	private int idCzesc;	
+	private int idCzesc;
+	private String numerCzesci;
 	private String nazwa;	
 	private double cena;
 	private String marka;
@@ -9,12 +10,16 @@ public class Czesc {
 	public Czesc()	{
 		
 	}
-	public Czesc(String nazwa, String marka, double cena)	{
+	
+	public Czesc(int idCzesc, String numerCzesci, String nazwa, double cena, String marka) {
 		super();
+		this.idCzesc = idCzesc;
+		this.numerCzesci = numerCzesci;
 		this.nazwa = nazwa;
 		this.cena = cena;
 		this.marka = marka;
 	}
+
 	public int getIdCzesc() {
 		return idCzesc;
 	}
@@ -45,6 +50,12 @@ public class Czesc {
 	
 	public void setMarka(String marka) {
 		this.marka = marka;
+	}
+	public String getNumerCzesci() {
+		return numerCzesci;
+	}
+	public void setNumerCzesci(String numerCzesci) {
+		this.numerCzesci = numerCzesci;
 	}
 
 }
