@@ -10,7 +10,9 @@ public class Zamowienie {
 	private String adres;
 	
 	
-
+	public Zamowienie() {
+		
+	}
 
 	
 	public Zamowienie(int idZamowienie, String numerZamowienie, Date dataZamowienie, String kontrahent, String numerTel,
