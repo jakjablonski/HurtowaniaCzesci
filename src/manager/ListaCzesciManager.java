@@ -1,18 +1,19 @@
 package manager;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
 
 import model.Czesc;
 import model.Zamowienie;
+import model.ListaCzesci;
 
 public class ListaCzesciManager {
-	public class ZamowienieManager {
 		private Connection conn;
 		private Statement stmt;
 		
@@ -24,8 +25,10 @@ public class ListaCzesciManager {
 		private PreparedStatement GetListCzescid;
 		private PreparedStatement UpdateListaCzesc;
 		
+		private CzescManager czescManager = new CzescManager();
+		private ZamowienieManager zamowienieManager = new ZamowienieManager();
 		
-		public ZamowienieManager(){
+		public ListaCzesciManager(){
 			try{
 				conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
 				stmt = conn.createStatement();
@@ -42,8 +45,8 @@ public class ListaCzesciManager {
 				UsunCzesczZamowienia = conn.prepareStatement("DELETE FROM ListaCzesci WHERE idZamowienie = ? AND idCzesc = ?");
 				UsunWszystkieListCzescid = conn.prepareStatement("DELETE FROM ListaCzesci WHERE idZamowienia = ?");
 				UsunWszystkieListCzesc = conn.prepareStatement("DELETE FROM ListaCzesci");
-				GetListaCzesc = conn.prepareStatement("SELECT * FROM ListaCzesci");
-				GetListCzescid = conn.prepareStatement("SELECT * FROM ListaCzesci WHERE idZamowienie = ?");
+				//GetListaCzescid = conn.prepareStatement("SELECT * FROM ListaCzesci");
+				GetListaCzesc = conn.prepareStatement("SELECT z.numerzamowienia , z.datazamowienie, z.kontrahent, cz.numerczesci, cz.nazwa, cz.cena FROM ListaCzesci as lcz LEFT JOIN czesc as cz ON cz.idCzesc=lcz.idCzesc LEFT JOIN zamowienie as z ON z.idZamowienie=lcz.idZamowienie");
 				//dodaj ³aczenie
 				UpdateListaCzesc = conn.prepareStatement("Update ListaCzesci SET idCzesc = ? , idZamowienie = ? Where idCzesc = ? AND idZamowienie = ? ");
 			} catch (SQLException e) {
@@ -123,5 +126,5 @@ public class ListaCzesciManager {
 			return licznik;
 			}
 		
-		}
+		
 }

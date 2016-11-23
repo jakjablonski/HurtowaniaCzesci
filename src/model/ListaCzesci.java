@@ -8,6 +8,8 @@ public class ListaCzesci {
 	public ListaCzesci(){
 		
 	}
+	
+	
 
 	public int getIdListaCzesci() {
 		return idListaCzesci;
