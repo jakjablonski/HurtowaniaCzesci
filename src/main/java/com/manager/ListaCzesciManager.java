@@ -53,7 +53,7 @@ public class ListaCzesciManager {
 			// ListaCzesci");
 			GetListaCzesc = conn.prepareStatement(
 					"SELECT z.numerzamowienia , z.datazamowienie, z.kontrahent, cz.numerczesci, cz.nazwa, cz.cena FROM ListaCzesci as lcz LEFT JOIN czesc as cz ON cz.idCzesc=lcz.idCzesc LEFT JOIN zamowienie as z ON z.idZamowienie=lcz.idZamowienie");
-			// dodaj ³aczenie
+			// dodaj ï¿½aczenie
 			UpdateListaCzesc = conn.prepareStatement(
 					"Update ListaCzesci SET idCzesc = ? , idZamowienie = ? Where idCzesc = ? AND idZamowienie = ? ");
 		} catch (SQLException e) {
