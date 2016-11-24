@@ -55,66 +55,91 @@ public class ZamowienieManager {
 		return conn;
 	}
 
-	public int DodajZamowienie(Zamowienie zamowienie) {
+	public boolean DodajZamowienie(Zamowienie zamowienie) {
 		int licznik = 0;
 		try {
-			conn.setAutoCommit(false);
-			DodajZamowienie.setString(1, zamowienie.getNumerZamowienia());
-			DodajZamowienie.setDate(2, zamowienie.getDataZamowienie());
+			
+			DodajZamowienie.setString(1, zamowienie.getNumerZamowienie());
+			DodajZamowienie.setString(2, zamowienie.getDataZamowienie());
 			DodajZamowienie.setString(3, zamowienie.getKontrahent());
 			DodajZamowienie.setString(4, zamowienie.getNumerTel());
 			DodajZamowienie.setString(5, zamowienie.getAdres());
 			licznik = DodajZamowienie.executeUpdate();
-			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return licznik;
+		if(licznik == 1) return true;
+		else return false;
 	}
-
-	public int UsunZamowienie(Zamowienie zamowienie) {
-		int licznik = 0;
+	
+public boolean DodajkilkaZamowien(List<Zamowienie> zamowienia ) {
+		
 		try {
 			conn.setAutoCommit(false);
-			UsunZamowienie.setString(1, zamowienie.getNumerZamowienia());
+			for(Zamowienie zamowienie:zamowienia){
+			DodajZamowienie.setString(1, zamowienie.getNumerZamowienie());
+			DodajZamowienie.setString(2, zamowienie.getDataZamowienie());
+			DodajZamowienie.setString(3, zamowienie.getKontrahent());
+			DodajZamowienie.setString(4, zamowienie.getNumerTel());
+			DodajZamowienie.setString(5, zamowienie.getAdres());
+			DodajZamowienie.executeUpdate();
+			}
+			conn.commit();
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			try{
+				conn.rollback();
+				conn.setAutoCommit(true);
+			}catch (SQLException ee) {
+			ee.printStackTrace();
+		}
+		}
+		 return false;
+	}
+
+
+	public boolean UsunZamowienie(Zamowienie zamowienie) {
+		int licznik = 0;
+		try {
+			UsunZamowienie.setString(1, zamowienie.getNumerZamowienie());
 			licznik = UsunZamowienie.executeUpdate();
-			conn.commit();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return licznik;
+		if(licznik == 1) return true;
+		else return false;
 	}
 
-	public int UsunWszystkieZamowienie() {
-		int licznik = 0;
+	public void UsunWszystkieZamowienie() {
+
 		try {
-			conn.setAutoCommit(false);
-			licznik = UsunWszystkieZamowienie.executeUpdate();
-			conn.commit();
+			UsunWszystkieZamowienie.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return licznik;
+		
 	}
 
 	public List<Zamowienie> getAll() {
-		List<Zamowienie> zamowienie = new ArrayList<Zamowienie>();
+		List<Zamowienie> zamowienia = new ArrayList<Zamowienie>();
 		try {
 			ResultSet rs = listaZamowienie.executeQuery();
 			while (rs.next()) {
-				Zamowienie zamowienia = new Zamowienie();
-				zamowienia.setIdZamowienie(rs.getInt("idZamowienie"));
-				zamowienia.setNumerZamowienia(rs.getString("numerzamowienie"));
-				zamowienia.setDataZamowienie(rs.getDate("dataZamowienie"));
-				zamowienia.setKontrahent(rs.getString("kontrahent"));
-				zamowienia.setNumerTel(rs.getString("numertel"));
-				zamowienia.setAdres(rs.getString("adres"));
-				((List<Zamowienie>) zamowienia).add(zamowienia);
+				Zamowienie z = new Zamowienie();
+				z.setIdZamowienie(rs.getInt("idZamowienie"));
+				z.setNumerZamowienie(rs.getString("numerzamowienie"));
+				z.setDataZamowienie(rs.getString("dataZamowienie"));
+				z.setKontrahent(rs.getString("kontrahent"));
+				z.setNumerTel(rs.getString("numertel"));
+				z.setAdres(rs.getString("adres"));
+				zamowienia.add(z);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return zamowienie;
+		return zamowienia;
 	}
 
 	public Zamowienie getnumerZamowienie(String numerzamowienie) {
@@ -124,8 +149,8 @@ public class ZamowienieManager {
 			ResultSet rs = GetZamowienie.executeQuery();
 			while (rs.next()) {
 				zamowienia.setIdZamowienie(rs.getInt("idZamowienie"));
-				zamowienia.setNumerZamowienia(rs.getString("numerzamowienie"));
-				zamowienia.setDataZamowienie(rs.getDate("dataZamowienie"));
+				zamowienia.setNumerZamowienie(rs.getString("numerzamowienie"));
+				zamowienia.setDataZamowienie(rs.getString("dataZamowienie"));
 				zamowienia.setKontrahent(rs.getString("kontrahent"));
 				zamowienia.setNumerTel(rs.getString("numertel"));
 				zamowienia.setAdres(rs.getString("adres"));
@@ -143,8 +168,8 @@ public class ZamowienieManager {
 			ResultSet rs = GetZamowienieid.executeQuery();
 			while (rs.next()) {
 				zamowienia.setIdZamowienie(rs.getInt("idZamowienie"));
-				zamowienia.setNumerZamowienia(rs.getString("numerzamowienie"));
-				zamowienia.setDataZamowienie(rs.getDate("dataZamowienie"));
+				zamowienia.setNumerZamowienie(rs.getString("numerzamowienie"));
+				zamowienia.setDataZamowienie(rs.getString("dataZamowienie"));
 				zamowienia.setKontrahent(rs.getString("kontrahent"));
 				zamowienia.setNumerTel(rs.getString("numertel"));
 				zamowienia.setAdres(rs.getString("adres"));
@@ -159,12 +184,12 @@ public class ZamowienieManager {
 		int licznik = 0;
 		try {
 			conn.setAutoCommit(false);
-			updateZamowienie.setString(1, zamowienienowe.getNumerZamowienia());
-			updateZamowienie.setDate(2, zamowienienowe.getDataZamowienie());
+			updateZamowienie.setString(1, zamowienienowe.getNumerZamowienie());
+			updateZamowienie.setString(2, zamowienienowe.getDataZamowienie());
 			updateZamowienie.setString(3, zamowienienowe.getKontrahent());
 			updateZamowienie.setString(4, zamowienienowe.getNumerTel());
 			updateZamowienie.setString(5, zamowienienowe.getAdres());
-			updateZamowienie.setString(6, zamowieniestare.getNumerZamowienia());
+			updateZamowienie.setString(6, zamowieniestare.getNumerZamowienie());
 			licznik = updateZamowienie.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {

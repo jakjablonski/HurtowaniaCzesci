@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Zamowienie {
 	private int idZamowienie;
 	private String numerZamowienie;
-	private Date dataZamowienie;
+	private String dataZamowienie;
 	private String kontrahent;
 	private String numerTel;
 	private String adres;
@@ -14,7 +14,16 @@ public class Zamowienie {
 
 	}
 
-	public Zamowienie(int idZamowienie, String numerZamowienie, Date dataZamowienie, String kontrahent, String numerTel,
+	public Zamowienie(String numerZamowienie, String dataZamowienie, String kontrahent, String numerTel, String adres) {
+		super();
+		this.numerZamowienie = numerZamowienie;
+		this.dataZamowienie = dataZamowienie;
+		this.kontrahent = kontrahent;
+		this.numerTel = numerTel;
+		this.adres = adres;
+	}
+
+	public Zamowienie(int idZamowienie, String numerZamowienie, String dataZamowienie, String kontrahent, String numerTel,
 			String adres) {
 		super();
 		this.idZamowienie = idZamowienie;
@@ -33,19 +42,19 @@ public class Zamowienie {
 		this.idZamowienie = idZamowienie;
 	}
 
-	public String getNumerZamowienia() {
+	public String getNumerZamowienie() {
 		return numerZamowienie;
 	}
 
-	public void setNumerZamowienia(String numerZamowienie) {
+	public void setNumerZamowienie(String numerZamowienie) {
 		this.numerZamowienie = numerZamowienie;
 	}
 
-	public Date getDataZamowienie() {
+	public String getDataZamowienie() {
 		return dataZamowienie;
 	}
 
-	public void setDataZamowienie(Date dataZamowienie) {
+	public void setDataZamowienie(String dataZamowienie) {
 		this.dataZamowienie = dataZamowienie;
 	}
 
@@ -72,5 +81,7 @@ public class Zamowienie {
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}
+
+
 
 }

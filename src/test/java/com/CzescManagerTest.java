@@ -51,9 +51,10 @@ public class CzescManagerTest {
 		czescimanager.UsunWszystkieCzesc();
 		Czesc czesc = new Czesc("AR7854","Tuleja",19.7,"Fiat");
 		czescimanager.DodajCzesc(czesc);
-		assertEquals(1,((CzescManager)czescimanager).UsunCzesc(czesc));		
+		assertEquals(true,((CzescManager)czescimanager).UsunCzesc(czesc));		
 	}
 	*/
+	//popraw
 	@Test
 	public void test_dodajkilka(){
 		List<Czesc> cz = new ArrayList<Czesc>();
