@@ -40,7 +40,7 @@ public class CzescManager {
 			DodajCzesc = conn.prepareStatement("INSERT INTO Czesc(numerczesci, nazwa, cena ,marka) VALUES (?,?,?,?)");
 			UsunCzesc = conn.prepareStatement("DELETE FROM Czesc WHERE numerczesci = ?");
 			UsunWszystkieCzesc = conn.prepareStatement("DELETE FROM Czesc");
-			GetCzesc = conn.prepareStatement("SELECT numerczesci,nazwa,cena,marka FROM Czesc WHERE numerczesci = ?");
+			GetCzesc = conn.prepareStatement("SELECT * FROM Czesc WHERE numerczesci = ?");
 			GetCzescid = conn.prepareStatement("SELECT * FROM Czesc WHERE idCzesc = ?");
 			listaCzesc = conn.prepareStatement("SELECT * FROM Czesc");
 			UpdateCzesc = conn.prepareStatement("Update Czesc SET numerczesci = ?, nazwa = ?, cena = ?, marka = ? WHERE numerczesci = ?");
@@ -169,7 +169,7 @@ public class CzescManager {
 			GetCzesc.setString(1, numerczesci);
 			ResultSet rs = GetCzesc.executeQuery();
 			while (rs.next()) {
-				//czesci.setIdCzesc(rs.getInt("idCzesc"));
+				czesci.setIdCzesc(rs.getInt("idCzesc"));
 				czesci.setNumerCzesci(rs.getString("numerczesci"));
 				czesci.setNazwa(rs.getString("nazwa"));
 				czesci.setCena(rs.getDouble("cena"));
