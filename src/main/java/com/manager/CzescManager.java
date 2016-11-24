@@ -59,18 +59,41 @@ public class CzescManager {
 	public boolean DodajCzesc(Czesc czesc) {
 		int licznik = 0;
 		try {
-			conn.setAutoCommit(false);
 			DodajCzesc.setString(1, czesc.getNumerCzesci());
 			DodajCzesc.setString(2, czesc.getNazwa());
 			DodajCzesc.setDouble(3, czesc.getCena());
 			DodajCzesc.setString(4, czesc.getMarka());
 			licznik = DodajCzesc.executeUpdate();
-			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		if(licznik == 1) return true;
 		else return false;
+	}
+	
+	//dodawnie listy
+	public boolean DodajkilkaCzesc(List<Czesc> czesci ) {
+		
+		try {
+			conn.setAutoCommit(false);
+			for(Czesc czesc: czesci){
+			DodajCzesc.setString(1, czesc.getNumerCzesci());
+			DodajCzesc.setString(2, czesc.getNazwa());
+			DodajCzesc.setDouble(3, czesc.getCena());
+			DodajCzesc.setString(4, czesc.getMarka());
+			DodajCzesc.executeUpdate();
+			}
+			conn.commit();
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			try{
+				conn.rollback();
+				conn.setAutoCommit(true);
+			}catch (SQLException ee) {
+			ee.printStackTrace();
+		}
+		}
+		 return false;
 	}
 
 	
@@ -88,16 +111,16 @@ public class CzescManager {
 	}
 
 	
-	public int UsunWszystkieCzesc() {
-		int licznik = 0;
+	public void UsunWszystkieCzesc() {
+		
 		try {
-			conn.setAutoCommit(false);
-			licznik = UsunWszystkieCzesc.executeUpdate();
-			conn.commit();
+			
+			UsunWszystkieCzesc.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return licznik;
+		
 	}
 
 	
