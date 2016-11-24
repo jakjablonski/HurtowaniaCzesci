@@ -81,6 +81,7 @@ public class ZamowienieManagerTest {
 		Zamowienie zamowienie = zamowienieManager.getnumerZamowienie("ZAE8982");
 		
 		assertEquals(z4.getNumerZamowienie(),zamowienie.getNumerZamowienie());
+		zamowienieManager.UsunWszystkieZamowienie();
 	}
 	@Test
 	public void update_test(){

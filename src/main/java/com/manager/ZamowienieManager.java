@@ -161,10 +161,10 @@ public boolean DodajkilkaZamowien(List<Zamowienie> zamowienia ) {
 		return zamowienia;
 	}
 
-	public Zamowienie getnumerZamowienieid(String idZamowienie) {
+	public Zamowienie getnumerZamowienieid(int idZamowienie) {
 		Zamowienie zamowienia = new Zamowienie();
 		try {
-			GetZamowienieid.setString(1, idZamowienie);
+			GetZamowienieid.setInt(1, idZamowienie);
 			ResultSet rs = GetZamowienieid.executeQuery();
 			while (rs.next()) {
 				zamowienia.setIdZamowienie(rs.getInt("idZamowienie"));

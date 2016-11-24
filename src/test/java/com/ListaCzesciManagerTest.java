@@ -32,18 +32,23 @@ public class ListaCzesciManagerTest {
 	zamowieniemanager.UsunWszystkieZamowienie();
 	
 	Zamowienie zam = new Zamowienie("sda5563665","2000-10-11","Kowalski","12","Gdansk");
-	Czesc cz1 = new Czesc("AR7854","Tuleja",19.7,"Fiat");
-	Czesc cz2 = new Czesc("BR007854","amortyzator",192.7,"Audi");
-	
+	Czesc cz1 = new Czesc("AR7854","Tuleja",19.7,"Fiaaat");
+	Czesc cz2 = new Czesc("BR007854","amortyzator",192.7,"Auaadi");
+	zamowieniemanager.DodajZamowienie(zam);
 	assertEquals(true,zamowieniemanager.DodajZamowienie(zam));
 	assertEquals(true,czescmanager.DodajCzesc(cz1));
 	assertEquals(true,czescmanager.DodajCzesc(cz2));
 	
-	zam = zamowieniemanager.getnumerZamowienie(zam.getNumerZamowienie());
+	zam = zamowieniemanager.getnumerZamowienieid(zam.getIdZamowienie());
+	System.out.println(zam);
 	cz1 = czescmanager.getNumerCzesc(cz1.getNumerCzesci());
 	cz2 = czescmanager.getNumerCzesc(cz2.getNumerCzesci());
+	//assertEquals(true,listaczescimanager.DodajCzescdoZamowienia(zam, cz1));
+	//assertEquals(true,listaczescimanager.DodajCzescdoZamowienia(zam, cz2));
 	
-	List<Czesc> czesci = listaczescimanager.
+	
+	
+	//List<Czesc> czesci = listaczescimanager.
 	
 	}
 }
