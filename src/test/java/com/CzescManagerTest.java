@@ -12,8 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.manager.CzescManager;
-
+import com.manager.ZamowienieManager;
 import com.model.Czesc;
+import com.model.Zamowienie;
 
 
 
@@ -45,16 +46,21 @@ public class CzescManagerTest {
 		assertEquals("19.7",String.valueOf(zwrocczesc.getCena()));
 		assertEquals("Fiat",zwrocczesc.getMarka());
 		
-	}/*
+	}
 	@Test
 	public void test_usun(){
 		czescimanager.UsunWszystkieCzesc();
 		Czesc czesc = new Czesc("AR7854","Tuleja",19.7,"Fiat");
 		czescimanager.DodajCzesc(czesc);
-		assertEquals(true,((CzescManager)czescimanager).UsunCzesc(czesc));		
+		List<Czesc> cz= czescimanager.getAll();
+		
+		assertEquals(1,cz.size());	
+		czescimanager.UsunCzesc(czesc);
+		List<Czesc> cze = czescimanager.getAll();
+		//System.out.println(cze.size());
+		assertEquals(0,cze.size());		
 	}
-	*/
-	//popraw
+	
 	@Test
 	public void test_dodajkilka(){
 		List<Czesc> cz = new ArrayList<Czesc>();
@@ -81,7 +87,6 @@ public class CzescManagerTest {
 		czescimanager.DodajCzesc(czescstara);	
 		assertEquals(1, czescimanager.UpdateCzesc(czescstara.getNumerCzesci(), czescnowa));
 	}
-	/*
 	@Test
 	public void test_getczesc(){
 		List<Czesc> cz = new ArrayList<Czesc>();
@@ -95,13 +100,12 @@ public class CzescManagerTest {
 		cz.add(cz4);
 		
 		czescimanager.UsunWszystkieCzesc();
-		czescimanager.DodajkilkaCzesc(cz);
-		System.out.println(cz2.getNumerCzesci());
-		System.out.println(czescimanager.getCzesc("BR007854"));
-		assertEquals(cz2,czescimanager.getNumerCzesc("BR007854") );
+		czescimanager.DodajkilkaCzesc(cz);		
+		Czesc czesc = czescimanager.getNumerCzesc("BR007854");
+		
+		assertEquals(cz2.getNazwa(),czesc.getNazwa());
 	}
-	*/
-	//do poprawy
+
 	
 
 }

@@ -63,5 +63,32 @@ public class ZamowienieManagerTest {
 		List<Zamowienie> zm = zamowienieManager.getAll();
 		assertEquals(4, zm.size());
 	}
+	@Test
+	public void test_getzamowienie(){
+		List<Zamowienie> z = new ArrayList<Zamowienie>();
+		Zamowienie z1 = new Zamowienie("sda5563665","2000-10-11","Kowalski","12","Gdansk");
+		Zamowienie z2 = new Zamowienie("RMA9875","2220-10-11","xxxkk","164562","torun");
+		Zamowienie z3 = new Zamowienie("ZDF8954","2003-10-11","TEst","654612","Poznan");
+		Zamowienie z4 = new Zamowienie ("ZAE8982","2090-10-11","Nowak","1645642","Wawa");
+		z.add(z1);
+		z.add(z2);
+		z.add(z3);
+		z.add(z4);
+		
+		zamowienieManager.UsunWszystkieZamowienie();
+		zamowienieManager.DodajkilkaZamowien(z);
+				
+		Zamowienie zamowienie = zamowienieManager.getnumerZamowienie("ZAE8982");
+		
+		assertEquals(z4.getNumerZamowienie(),zamowienie.getNumerZamowienie());
+	}
+	@Test
+	public void update_test(){
+		zamowienieManager.UsunWszystkieZamowienie();
+		Zamowienie zamowieniestare = new Zamowienie("sda5563665","2000-10-11","Kowalski","12","Gdansk");
+		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","NOOOOWWAAK","12","Gdansk");
+		zamowienieManager.DodajZamowienie(zamowieniestare);
+		assertEquals(1, zamowienieManager.UpdateZamowienie(zamowieniestare, zamowienie));
+	}
 	
 }
