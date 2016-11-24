@@ -40,7 +40,7 @@ public class CzescManager {
 			DodajCzesc = conn.prepareStatement("INSERT INTO Czesc(numerczesci, nazwa, cena ,marka) VALUES (?,?,?,?)");
 			UsunCzesc = conn.prepareStatement("DELETE FROM Czesc WHERE idCzesc = ?");
 			UsunWszystkieCzesc = conn.prepareStatement("DELETE FROM Czesc");
-			GetCzesc = conn.prepareStatement("SELECT * FROM Czesc WHERE numerczesci = ?");
+			GetCzesc = conn.prepareStatement("SELECT numerczesci,nazwa,cena,marka FROM Czesc WHERE numerczesci = ?");
 			GetCzescid = conn.prepareStatement("SELECT * FROM Czesc WHERE idCzesc = ?");
 			listaCzesc = conn.prepareStatement("SELECT * FROM Czesc");
 			UpdateCzesc = conn.prepareStatement("Update Czesc SET numerczesci = ?, nazwa = ?, cena = ?, marka = ? WHERE numerczesci = ?");
@@ -100,10 +100,9 @@ public class CzescManager {
 	public int UsunCzesc(Czesc czesc) {
 		int licznik = 0;
 		try {
-			conn.setAutoCommit(false);
+			
 			UsunCzesc.setInt(1, czesc.getIdCzesc());
 			licznik = UsunCzesc.executeUpdate();
-			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -124,7 +123,7 @@ public class CzescManager {
 	}
 
 	
-	public int UpdateCzesc(Czesc czescstara, Czesc czescnowa) {
+	public int UpdateCzesc(String czescstara, Czesc czescnowa) {
 		int licznik = 0;
 		try {
 			conn.setAutoCommit(false);
@@ -132,7 +131,7 @@ public class CzescManager {
 			UpdateCzesc.setString(2, czescnowa.getNazwa());
 			UpdateCzesc.setDouble(3, czescnowa.getCena());
 			UpdateCzesc.setString(4, czescnowa.getMarka());
-			UpdateCzesc.setString(5, czescstara.getNumerCzesci());
+			UpdateCzesc.setString(5, czescstara);
 			licznik = UpdateCzesc.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {
@@ -169,7 +168,7 @@ public class CzescManager {
 			GetCzesc.setString(1, numerczesci);
 			ResultSet rs = GetCzesc.executeQuery();
 			while (rs.next()) {
-				czesci.setIdCzesc(rs.getInt("idCzesc"));
+				//czesci.setIdCzesc(rs.getInt("idCzesc"));
 				czesci.setNumerCzesci(rs.getString("numerczesci"));
 				czesci.setNazwa(rs.getString("nazwa"));
 				czesci.setCena(rs.getDouble("cena"));
