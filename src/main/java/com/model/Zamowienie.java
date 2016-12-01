@@ -7,31 +7,26 @@ public class Zamowienie {
 	private String numerZamowienie;
 	private String dataZamowienie;
 	private String kontrahent;
-	private String numerTel;
-	private String adres;
 
 	public Zamowienie() {
 
 	}
 
-	public Zamowienie(String numerZamowienie, String dataZamowienie, String kontrahent, String numerTel, String adres) {
+	public Zamowienie(String numerZamowienie, String dataZamowienie, String kontrahent) {
 		super();
 		this.numerZamowienie = numerZamowienie;
 		this.dataZamowienie = dataZamowienie;
 		this.kontrahent = kontrahent;
-		this.numerTel = numerTel;
-		this.adres = adres;
+		
 	}
 
-	public Zamowienie(int idZamowienie, String numerZamowienie, String dataZamowienie, String kontrahent, String numerTel,
-			String adres) {
+	public Zamowienie(int idZamowienie, String numerZamowienie, String dataZamowienie, String kontrahent) {
 		super();
 		this.idZamowienie = idZamowienie;
 		this.numerZamowienie = numerZamowienie;
 		this.dataZamowienie = dataZamowienie;
 		this.kontrahent = kontrahent;
-		this.numerTel = numerTel;
-		this.adres = adres;
+		
 	}
 
 	public int getIdZamowienie() {
@@ -64,22 +59,6 @@ public class Zamowienie {
 
 	public void setKontrahent(String kontrahent) {
 		this.kontrahent = kontrahent;
-	}
-
-	public String getNumerTel() {
-		return numerTel;
-	}
-
-	public void setNumerTel(String numerTel) {
-		this.numerTel = numerTel;
-	}
-
-	public String getAdres() {
-		return adres;
-	}
-
-	public void setAdres(String adres) {
-		this.adres = adres;
 	}
 
 

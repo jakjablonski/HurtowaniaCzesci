@@ -6,19 +6,17 @@ public class Czesc {
 	private String numerCzesci;
 	private String nazwa;
 	private double cena;
-	private String marka;
 
 	public Czesc() {
 
 	}
 
-	public Czesc(String numerCzesci, String nazwa, double cena, String marka) {
+	public Czesc(String numerCzesci, String nazwa, double cena) {
 		super();
 		
 		this.numerCzesci = numerCzesci;
 		this.nazwa = nazwa;
 		this.cena = cena;
-		this.marka = marka;
 	}
 
 	public int getIdCzesc() {
@@ -43,14 +41,6 @@ public class Czesc {
 
 	public void setCena(double cena) {
 		this.cena = cena;
-	}
-
-	public String getMarka() {
-		return marka;
-	}
-
-	public void setMarka(String marka) {
-		this.marka = marka;
 	}
 
 	public String getNumerCzesci() {
