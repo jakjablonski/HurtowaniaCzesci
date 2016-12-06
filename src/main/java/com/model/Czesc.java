@@ -2,7 +2,7 @@ package com.model;
 
 public class Czesc {
 
-	private int idCzesc;
+	private int id;
 	private String numerCzesci;
 	private String nazwa;
 	private double cena;
@@ -30,11 +30,11 @@ public class Czesc {
 	}
 
 	public int getIdCzesc() {
-		return idCzesc;
+		return id;
 	}
 
 	public void setIdCzesc(int idCzesc) {
-		this.idCzesc = idCzesc;
+		this.id = idCzesc;
 	}
 
 	public String getNazwa() {

@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.manager.CzescManager;
 import com.manager.ZamowienieManager;
 import com.model.Czesc;
 import com.model.Zamowienie;
@@ -15,11 +16,10 @@ import com.model.Zamowienie;
 public class ZamowienieManagerTest {
 
 	ZamowienieManager zamowienieManager = new ZamowienieManager();
+	CzescManager CzesciManager = new CzescManager();
 	
-	@Before
-	public void czysc_baze(){
-		zamowienieManager.UsunWszystkieZamowienie();
-	}
+	
+	
 	@Test
 	public void test_conection(){
 		assertNotNull(zamowienieManager.getConnection());
@@ -44,7 +44,6 @@ public class ZamowienieManagerTest {
 		zamowienieManager.DodajZamowienie(zamowienie);
 		Zamowienie zamowienie2 = new Zamowienie("sda5563666","2011-10-11","Kowalski2");
 		zamowienieManager.DodajZamowienie(zamowienie2);
-		List<Zamowienie> z = new ArrayList<Zamowienie>();
 		
 		assertEquals(2,zamowienieManager.getAll().size());
 		zamowienieManager.UsunZamowienie("sda5563665");
