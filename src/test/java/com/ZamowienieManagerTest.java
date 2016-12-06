@@ -42,7 +42,14 @@ public class ZamowienieManagerTest {
 		zamowienieManager.UsunWszystkieZamowienie();
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
-		assertEquals(true,((ZamowienieManager)zamowienieManager).UsunZamowienie(zamowienie));
+		Zamowienie zamowienie2 = new Zamowienie("sda5563666","2011-10-11","Kowalski2");
+		zamowienieManager.DodajZamowienie(zamowienie2);
+		List<Zamowienie> z = new ArrayList<Zamowienie>();
+		
+		assertEquals(2,zamowienieManager.getAll().size());
+		zamowienieManager.UsunZamowienie("sda5563665");
+		assertEquals(1,zamowienieManager.getAll().size());
+		
 	}
 	@Test
 	public void test_dodajkilkazam(){
