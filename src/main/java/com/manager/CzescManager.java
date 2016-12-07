@@ -26,6 +26,7 @@ public class CzescManager {
 	private PreparedStatement UpdateZamowienie;
 	private PreparedStatement UpdatesetZamowienie;
 	private PreparedStatement GetZamowienieCzesc;
+	
 
 	public CzescManager() {
 		try {
@@ -52,6 +53,7 @@ public class CzescManager {
 			UpdateZamowienie = conn.prepareStatement("Update Czesc SET zamowienie_id=? where numerczesci=?");
 			UpdatesetZamowienie = conn .prepareStatement("Update Czesc SET zamowienie_id=(SELECT id FROM Zamowienie WHERE numerzamowienie=?) WHERE numerczesci=?");
 			GetZamowienieCzesc = conn.prepareStatement("SELECT id, numerczesci, nazwa, cena, zamowienie_id FROM Czesc WHERE zamowienie_id = (SELECT id FROM Zamowienie WHERE numerczesci=?);");
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -62,7 +64,15 @@ public class CzescManager {
 		return conn;
 	}
 
-	
+	public void ZmienZamowieniedlaCzesc(Czesc czesc, String numerzamowienie){
+		try {
+			UpdatesetZamowienie.setString(1, numerzamowienie);
+			UpdatesetZamowienie.setString(2, czesc.getNumerCzesci());
+			System.out.println(UpdatesetZamowienie.executeUpdate());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public boolean DodajCzesc(Czesc czesc) {
 		int licznik = 0;
 		try {
@@ -214,6 +224,7 @@ public class CzescManager {
 			int zamowienie_id = zm.GetidCzesc(zamowienie.getNumerZamowienie());
 			UpdateZamowienie.setInt(1, zamowienie_id);
 			UpdateZamowienie.setString(2, czesc.getNumerCzesci());
+			licznik= UpdateZamowienie.executeUpdate();
 		} catch (SQLException e){
 			e.printStackTrace();
 		}

@@ -2,9 +2,7 @@ package com;
 
 import static org.junit.Assert.*;
 
-import java.awt.print.Printable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +85,7 @@ public class CzescManagerTest {
 		assertEquals(true,CzesciManager.ChangeCzesctoZamowienie(czesc, zamowienie2));
 		List<Czesc> czesci = CzesciManager.getAll();
 		Czesc returnczesc = czesci.get(0);
-		assertEquals("czczxc532",returnczesc.getZamowienie_id());
+		assertEquals(id2,returnczesc.getZamowienie_id());
 		
 	}
 	@Test	
@@ -122,7 +120,9 @@ public class CzescManagerTest {
 		int id2 = zamowienieManager.GetidCzesc("czczxc532");
 		Czesc czesc = new Czesc("AR7854","Tuleja",19.7,id1);
 		CzesciManager.DodajCzesc(czesc);
-		Czesc czesc2 = new Czesc();
+		
+		Czesc poprawczesc = new Czesc("AR7854","Tuleja",19.7,id2);
+		assertEquals(1, CzesciManager.UpdateCzesc(czesc.getNumerCzesci(), poprawczesc));
 	}
 	@Test
 	public void DeleteTest(){
