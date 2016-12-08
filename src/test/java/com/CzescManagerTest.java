@@ -32,14 +32,14 @@ public class CzescManagerTest {
 	
 	
 	@Test
-	public void test_conection(){
+	public void testConection(){
 		assertNotNull(zamowienieManager.getConnection());
 		assertNotNull(CzesciManager.getConnection());
 	}
 	
 	
 	@Test
-	public void test_dodaj_czesc(){
+	public void testDodajCzesc(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		Czesc czesc = new Czesc("AR7854","Tuleja",19.7,zamowienieManager.GetidCzesc("sda5563665"));
@@ -50,7 +50,7 @@ public class CzescManagerTest {
 		assertEquals("AR7854",cz.getNumerCzesci());
 	}
 	@Test
-	public void test_dodajkilka(){
+	public void testDodajKilka(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		
@@ -72,7 +72,7 @@ public class CzescManagerTest {
 		assertEquals(4, czesci.size());
 	}
 	@Test
-	public void TestZmienZamowienie(){
+	public void testZmienZamowienie(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		Zamowienie zamowienie2 = new Zamowienie("czczxc532","2020-10-11","Nowak");
@@ -89,7 +89,7 @@ public class CzescManagerTest {
 		
 	}
 	@Test	
-	public void TestGetCzesc(){
+	public void testGetCzesc(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		
@@ -111,7 +111,7 @@ public class CzescManagerTest {
 	}
 	
 	@Test
-	public void UpdateZamowienie(){
+	public void updateZamowienie(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		Zamowienie zamowienie2 = new Zamowienie("czczxc532","2020-10-11","Nowak");
@@ -125,7 +125,7 @@ public class CzescManagerTest {
 		assertEquals(1, CzesciManager.UpdateCzesc(czesc.getNumerCzesci(), poprawczesc));
 	}
 	@Test
-	public void DeleteTest(){
+	public void deleteTest(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		zamowienieManager.DodajZamowienie(zamowienie);
 		int zamowienie_id = zamowienieManager.GetidCzesc("sda5563665");

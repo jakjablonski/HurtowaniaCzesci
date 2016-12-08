@@ -15,43 +15,42 @@ import com.model.Zamowienie;
 
 public class ZamowienieManagerTest {
 
-	ZamowienieManager zamowienieManager = new ZamowienieManager();
+	ZamowienieManager ZamowienieManager = new ZamowienieManager();
 	CzescManager CzesciManager = new CzescManager();
 	
 	
 	
 	@Test
-	public void test_conection(){
-		assertNotNull(zamowienieManager.getConnection());
+	public void testConection(){
+		assertNotNull(ZamowienieManager.getConnection());
 	}
 	
 	@Test
-	public void test_dodaj_zamowienie(){
+	public void testDodajZamowienie(){
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
-		assertEquals(true,zamowienieManager.DodajZamowienie(zamowienie));
-		List<Zamowienie> zamowienia = zamowienieManager.getAll();
+		assertEquals(true,ZamowienieManager.DodajZamowienie(zamowienie));
+		List<Zamowienie> zamowienia = ZamowienieManager.getAll();
 		Zamowienie zwroczam = zamowienia.get(0);
 		assertEquals("sda5563665",zwroczam.getNumerZamowienie());
 		assertEquals("2000-10-11",zwroczam.getDataZamowienie());
 		assertEquals("Kowalski",zwroczam.getKontrahent());
 
 	}
-	//tu popraw
 	@Test
-	public void test_usun(){
-		zamowienieManager.UsunWszystkieZamowienie();
+	public void testUsun(){
+		ZamowienieManager.UsunWszystkieZamowienie();
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","Kowalski");
-		zamowienieManager.DodajZamowienie(zamowienie);
+		ZamowienieManager.DodajZamowienie(zamowienie);
 		Zamowienie zamowienie2 = new Zamowienie("sda5563666","2011-10-11","Kowalski2");
-		zamowienieManager.DodajZamowienie(zamowienie2);
+		ZamowienieManager.DodajZamowienie(zamowienie2);
 		
-		assertEquals(2,zamowienieManager.getAll().size());
-		zamowienieManager.UsunZamowienie("sda5563665");
-		assertEquals(1,zamowienieManager.getAll().size());
+		assertEquals(2,ZamowienieManager.getAll().size());
+		ZamowienieManager.UsunZamowienie("sda5563665");
+		assertEquals(1,ZamowienieManager.getAll().size());
 		
 	}
 	@Test
-	public void test_dodajkilkazam(){
+	public void testDodajKilkaZamowien(){
 		List<Zamowienie> z = new ArrayList<Zamowienie>();
 		Zamowienie z1 = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		Zamowienie z2 = new Zamowienie("RMA9875","2220-10-11","xxxkk");
@@ -62,14 +61,14 @@ public class ZamowienieManagerTest {
 		z.add(z3);
 		z.add(z4);
 		
-		zamowienieManager.UsunWszystkieZamowienie();
-		zamowienieManager.DodajkilkaZamowien(z);
+		ZamowienieManager.UsunWszystkieZamowienie();
+		ZamowienieManager.DodajkilkaZamowien(z);
 
-		List<Zamowienie> zm = zamowienieManager.getAll();
+		List<Zamowienie> zm = ZamowienieManager.getAll();
 		assertEquals(4, zm.size());
 	}
 	@Test
-	public void test_getzamowienie(){
+	public void testGetZamowienie(){
 		List<Zamowienie> z = new ArrayList<Zamowienie>();
 		Zamowienie z1 = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		Zamowienie z2 = new Zamowienie("RMA9875","2220-10-11","xxxkk");
@@ -80,21 +79,21 @@ public class ZamowienieManagerTest {
 		z.add(z3);
 		z.add(z4);
 		
-		zamowienieManager.UsunWszystkieZamowienie();
-		zamowienieManager.DodajkilkaZamowien(z);
+		ZamowienieManager.UsunWszystkieZamowienie();
+		ZamowienieManager.DodajkilkaZamowien(z);
 				
-		Zamowienie zamowienie = zamowienieManager.getnumerZamowienie("ZAE8982");
+		Zamowienie zamowienie = ZamowienieManager.getnumerZamowienie("ZAE8982");
 		
 		assertEquals(z4.getNumerZamowienie(),zamowienie.getNumerZamowienie());
-		zamowienieManager.UsunWszystkieZamowienie();
+		ZamowienieManager.UsunWszystkieZamowienie();
 	}
 	@Test
-	public void update_test(){
-		zamowienieManager.UsunWszystkieZamowienie();
+	public void updateTest(){
+		ZamowienieManager.UsunWszystkieZamowienie();
 		Zamowienie zamowieniestare = new Zamowienie("sda5563665","2000-10-11","Kowalski");
 		Zamowienie zamowienie = new Zamowienie("sda5563665","2000-10-11","NOOOOWWAAK");
-		zamowienieManager.DodajZamowienie(zamowieniestare);
-		assertEquals(1, zamowienieManager.UpdateZamowienie(zamowieniestare, zamowienie));
+		ZamowienieManager.DodajZamowienie(zamowieniestare);
+		assertEquals(1, ZamowienieManager.UpdateZamowienie(zamowieniestare, zamowienie));
 	}
 	
 }
